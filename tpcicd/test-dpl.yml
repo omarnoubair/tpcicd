@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-dpl
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: test
+  template:  # template fabric pod
+    metadata:
+      name: test-pod
+      labels:
+        app: test #nomination au choix ==> jsghsdj: serghsef
+    spec: 
+      containers:
+        - name: test  #docker --name
+          image: omarnbr/tpcicd:v1 #docker tag
+
+
+
+---
+apiVersion: v1
+kind: Service #, Pod, Deployment, Ingresse, .... type 
+metadata: 
+  name: test-srv
+spec:
+  type: NodePort
+  selector:
+    app: test #respect dans le client pod metadata labels
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30011
