@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod #Service, Deployment, Ingresse, .... type 
+metadata:
+  name: test-pod
+  labels:
+    app: test #nomination au choix ==> jsghsdj: serghsef
+spec: 
+  containers:
+    - name: test  #docker --name
+      image: omarnbr/tpcicd:v1 #docker tag
