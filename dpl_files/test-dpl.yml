@@ -7,21 +7,21 @@ spec:
   selector: 
     matchLabels:
       app: test
-  template:  # template fabric pod
+  template: 
     metadata:
       name: test-pod
       labels:
-        app: test #nomination au choix ==> jsghsdj: serghsef
+        app: test 
     spec: 
       containers:
         - name: test  #docker --name
-          image: omarnbr/tpcicd:v1 #docker tag
+          image: medomartp/tpcicd #docker tag
 
 
 
 ---
 apiVersion: v1
-kind: Service #, Pod, Deployment, Ingresse, .... type 
+kind: Service 
 metadata: 
   name: test-srv
 spec:

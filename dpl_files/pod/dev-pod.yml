@@ -7,4 +7,4 @@ metadata:
 spec: 
   containers:
     - name: dev  #docker --name
-      image: omarnbr/tpcicd:v1 #docker tag
+      image: medomartp/tpcicd #docker tag
