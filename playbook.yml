@@ -1,0 +1,30 @@
+- 
+  name: Playbook
+  hosts: k8s_cls
+  
+  tasks:
+  
+    - name: Test ping
+      ping:
+
+    - name: 'suppression des pod'
+      shell: kubectl delete -f  ./dpl_files/pod/.
+
+    - name: suppression des srv
+      shell: kubectl delete -f  ./dpl_files/srv/.
+
+    - name: copy des pod yml
+      copy:
+        dest: ./dpl_files/pod/.
+        src: ./dpl_files/pod/. 
+
+    - name: copy des srv yml
+      copy:
+        dest: ./dpl_files/srv/.
+        src: ./dpl_files/srv/.
+        
+    - name: application des pod
+      shell: kubectl apply -f ./dpl_files/pod/.
+      
+    - name: application des srv
+      shell: kubectl apply -f ./dpl_files/srv/.

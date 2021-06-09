@@ -7,6 +7,6 @@ spec:
   selector:
     app: test #respect dans le client pod metadata labels
   ports:
-    - port: 3000
-      targetPort: 3000
-      nodePort: 33007
+    - port: 5000
+      targetPort: 5000
+      nodePort: 31017
