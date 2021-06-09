@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+    stages {
+       
+        stage('git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/omarnoubair/tpcicd.git'
+            }
+        }
+       
+        stage('Build') {
+            steps {
+                sh 'docker build -t medomartp/tpcicd .'
+            }
+        }
+       
+        stage('run') {
+            steps {
+                sh 'docker run -d --name tpcicd-container -p 5000:5000 --rm medomartp/tpcicd'
+            }
+        }
+       
+        stage('test and stop') {
+            steps {
+                sh 'sleep 4'
+                sh 'curl http://192.168.50.50:5000 | grep "Hello world DevOps!"'
+                sh 'sleep 4'
+                sh 'docker stop tpcicd-container'
+            }
+        }
+       
+        stage('push') {
+            steps {
+                sh 'docker login -u medomartp -p medomartpcicd*0'
+                sh 'docker push medomartp/tpcicd'
+            }
+        }
+   
+        stage('Deploy') {
+            steps {
+                sh 'ansible-playbook -i targets.txt playbook.yml'
+            }
+        }
+    }
+}
+   
