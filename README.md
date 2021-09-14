@@ -24,3 +24,4 @@ verification current namespace ==> resultat attendu tpcicd
 
 4. apply deployement
 kubectl.exe apply -f tpcicd\. 
+test
